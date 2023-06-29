@@ -2,6 +2,7 @@
 import { buscaTodos } from "@/model/Produtos"
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Produto from "@/components/Produto"
 
 export default function Home() {
   
@@ -16,19 +17,13 @@ export default function Home() {
    }, [])
   
   return (
-    <div>
-      <h1>Everton Store</h1>
-      <p>Confira nossos produtos:</p>
+    <div className="grid grid-cols-2 place-items-center my-10">
       {
         produtos == 0 ? <p>Carregando...</p> : 
         produtos.map(P => 
-        <Link href={"/P/"+P.id}>
-          <div key={P.id}>
-            <p>{P.nome}</p>
-            <p>{P.preco}</p>
-            <img src={P.imagem}/>
-          </div>  
-        </Link>
+          <Link href={"/P/"+P.id}>
+            <Produto P={P} largura={250}/>
+          </Link>
         )
       }
     </div>

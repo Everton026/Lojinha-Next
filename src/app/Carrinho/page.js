@@ -1,5 +1,5 @@
 'use client'
-import { busca, buscaLista } from "@/model/Produtos"
+import { buscaLista } from "@/model/Produtos"
 import { useEffect, useState } from "react"
 
 export default function Carrinho(){

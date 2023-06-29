@@ -1,6 +1,7 @@
 'use client'
 import { busca } from "@/model/Produtos"
 import { useEffect, useState } from "react"
+import Produto from "@/components/Produto";
 
 export default function  PID(props){
 
@@ -36,12 +37,9 @@ export default function  PID(props){
         <div>
             {
                 produto == null ? <p>Produto não encontrado</p> : 
-                <div>
-                    <h1>{produto.nome}</h1>
-                    <p>{produto.descricao}</p>
-                    <p>R$ {produto.preco}</p>
-                    <img src={produto.imagem}/>
-
+                <div className="w-1/4 m-auto">
+                    <Produto P={produto} descricao={true} largura={500}/>
+                    <br/>
                     <label>
                         Quantidade:
                         <input type="number" onChange={(e)=> setQuantidade(e.target.value)}/>
