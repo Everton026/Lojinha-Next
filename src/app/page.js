@@ -1,21 +1,19 @@
 'use client'
 import { buscaTodos } from "@/model/Produtos"
 import { useState, useEffect } from "react"
+import Link from "next/link"
 
 export default function Home() {
   
   const [produtos, setProdutos] = useState([])
 
-  // esse é o jeito certo, react avisa como fazer:
-  // useEffect(()=>{
-  // async function dados(){
-  // const resposta = await buscaTodos(); 
-  //}
-  // }, [])
-  useEffect(async()=>{ // jeito errado
-    const resposta = await buscaTodos();   
-    setProdutos(resposta.data)           
-  }, [])
+  useEffect(()=>{
+   async function dados(){
+   const resposta = await buscaTodos(); 
+   setProdutos(resposta.data)
+  }
+  dados();
+   }, [])
   
   return (
     <div>
@@ -24,11 +22,13 @@ export default function Home() {
       {
         produtos == 0 ? <p>Carregando...</p> : 
         produtos.map(P => 
-        <div key={P.id}>
-          <p>{P.nome}</p>
-          <p>{P.preco}</p>
-          <img src={P.imagem}/>
-        </div>  
+        <Link href={"/P/"+P.id}>
+          <div key={P.id}>
+            <p>{P.nome}</p>
+            <p>{P.preco}</p>
+            <img src={P.imagem}/>
+          </div>  
+        </Link>
         )
       }
     </div>

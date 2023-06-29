@@ -8,3 +8,7 @@ export async function buscaTodos(){
 export async function busca(id){
     return await supabase.from("Produtos").select().eq("id", id); // equal = 
 }
+
+export async function buscaLista(lista_id){
+    return await supabase.from("Produtos").select().in("id", lista_id);
+}
